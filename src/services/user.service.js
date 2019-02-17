@@ -34,7 +34,7 @@ function logout() {
 function search() {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader(),
+        headers: Object.assign({},authHeader(),{ 'Content-Type': 'application/json' }),
         credentials: "same-origin"
         //credentials: 'include'
     };
@@ -43,16 +43,16 @@ function search() {
 }
 
 function handleResponse(response) {
-    console.log("response:"+response)
     return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        console.log("data:"+data)
+        console.log("data:"+text.replace(/'/g, '"'))
+        //replace single quote to double quote JSON response
+        const data = text.replace(/'/g, '"') 
         if (!response.ok) {
             if (response.status === 401) {
                 logout();
                 //location.reload(true);
             }
-            const error = (data && data.message) || response.statusText;
+            const error = data  || response.statusText;
             return Promise.reject(error);
         }
 

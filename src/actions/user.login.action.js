@@ -19,7 +19,7 @@ function login(username, password) {
                     history.push('/');
                 },
                 error => {
-                    dispatch(failure(error.toString()));
+                    dispatch(failure(error));
                 }
             );
     };

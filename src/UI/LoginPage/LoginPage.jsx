@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../actions';
+import './login.css';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -34,26 +35,33 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { loggingIn } = this.props;
+        const { loggingIn, loggedIn, operationError } = this.props;
         const { username, credential, submitted } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Login</h2>
+            <div className="container">
+                <h2 className="center">Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
+                    <div className={'center form-group' + (submitted && !username ? ' has-error' : '')}>
                         <input type="text" className="form-control" name="username" value={username} onChange={this.handleChange} />
                         {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !credential ? ' has-error' : '')}>
+                    <div className={'center form-group' + (submitted && !credential ? ' has-error' : '')}>
                         <input type="password" className="form-control" name="credential" value={credential} onChange={this.handleChange} />
                         {submitted && !credential &&
                             <div className="help-block">Credential is required</div>
                         }
                     </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
+                    <div className="rightalign form-group">
+                        <button className="btn btn-primary loginButton">Login</button>
+                        {loggingIn && <div>loading...</div>
+                        }
+                    </div>
+                    <div className={'center ' + (!loggedIn && operationError ? ' operationError' : '')}>
+                        {!loggedIn && operationError &&
+                            <div className="help-block">{operationError.message}</div>
+                        }
                     </div>
                 </form>
             </div>
@@ -62,9 +70,9 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggingIn, loggedIn, operationError } = state.authentication;
     return {
-        loggingIn
+        loggingIn, loggedIn, operationError
     };
 }
 
