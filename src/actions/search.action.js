@@ -5,11 +5,11 @@ import { userService } from '../services';
 export const searchActions = {
     search    
 };
-function search() {
+function search(searchText) {
     return dispatch => {
         dispatch(request());
 
-        userService.search()
+        userService.search(searchText)
             .then(
                 users => dispatch(success(users)),
                 error => dispatch(failure(error.toString()))

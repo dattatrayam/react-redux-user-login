@@ -31,14 +31,15 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function search() {
+function search(searchText) {
     const requestOptions = {
         method: 'GET',
         headers: Object.assign({},authHeader(),{ 'Content-Type': 'application/json' }),
         credentials: "same-origin"
         //credentials: 'include'
     };
-
+    //searchText is hard coded to test 
+    console.log("searchText:"+searchText)
     return fetch(`${proxyUrl + apiUrl}/v60/admin/search/user?keyword=test&alias=false`, requestOptions).then(handleResponse);
 }
 

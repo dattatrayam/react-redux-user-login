@@ -12,7 +12,8 @@ export function search(state = {}, action) {
       };
     case userActionConstants.SEARCH_FAILURE:
       return { 
-        error: action.error
+        error: action.error,
+        users: {}
       };
      default:
       return state
