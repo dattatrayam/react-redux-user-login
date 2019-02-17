@@ -1,6 +1,7 @@
 //import config from 'config';
 import { authHeader } from '../helpers';
 // todo: add URL into config file
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 const apiUrl =  'http://3.122.7.162:5000';
 
 export const userService = {
@@ -16,7 +17,7 @@ function login(username, credential) {
         body: JSON.stringify({ username, credential })
     };
 
-    return fetch(`${apiUrl}/v60/admin/session`, options)
+    return fetch(`${proxyUrl+ apiUrl}/v60/admin/session`, options)
         .then(handleResponse)
         .then(user => {
             // store user details and sessionId in local storage 
@@ -33,15 +34,19 @@ function logout() {
 function search() {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: authHeader(),
+        credentials: "same-origin"
+        //credentials: 'include'
     };
 
-    return fetch(`${apiUrl}/v60/admin/search/user?keyword=test&alias=false`, requestOptions).then(handleResponse);
+    return fetch(`${proxyUrl + apiUrl}/v60/admin/search/user?keyword=test&alias=false`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
+    console.log("response:"+response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        console.log("data:"+data)
         if (!response.ok) {
             if (response.status === 401) {
                 logout();

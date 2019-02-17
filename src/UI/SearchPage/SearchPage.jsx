@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../../actions';
+import { searchActions } from '../../actions';
 
 class SearchPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(userActions.getAll());
+        this.props.dispatch(searchActions.search());
     }
 
     render() {
