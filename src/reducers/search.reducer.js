@@ -13,7 +13,7 @@ export function search(state = {}, action) {
     case userActionConstants.SEARCH_FAILURE:
       return { 
         error: action.error,
-        users: {}
+        users: Object.assign({},{"Username":"aaa", "Name":"bbb","Status":"aa"},{"Username":"aaa", "Name":"bbb","Status":"aa"})
       };
      default:
       return state

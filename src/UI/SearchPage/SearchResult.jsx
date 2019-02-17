@@ -9,7 +9,7 @@ class SearchResult extends React.Component {
             {
                 users && 
                 <div className="searchContainer">
-                <div className="searchContainer-body">
+                <div className="searchResult-body">
                 <p> SearchResult </p>
                 </div>
                 </div>
