@@ -35,10 +35,11 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { loggingIn, loggedIn, operationError } = this.props;
+        const { loggingIn, loggedIn, error } = this.props;
         const { username, credential, submitted } = this.state;
         return (
             <div className="container">
+            <div className="container-body">
                 <h2 className="center">Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'center form-group' + (submitted && !username ? ' has-error' : '')}>
@@ -58,21 +59,22 @@ class LoginPage extends React.Component {
                         {loggingIn && <div>loading...</div>
                         }
                     </div>
-                    <div className={'center ' + (!loggedIn && operationError ? ' operationError' : '')}>
-                        {!loggedIn && operationError &&
-                            <div className="help-block">{operationError.message}</div>
+                    <div className={'center ' + (!loggedIn && error ? ' operationError' : '')}>
+                        {!loggedIn && error &&
+                            <div className="help-block">{error}</div>
                         }
                     </div>
                 </form>
+            </div>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const { loggingIn, loggedIn, operationError } = state.authentication;
+    const { loggingIn, loggedIn, error } = state.authentication;
     return {
-        loggingIn, loggedIn, operationError
+        loggingIn, loggedIn, error
     };
 }
 

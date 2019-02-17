@@ -45,14 +45,14 @@ function search() {
 function handleResponse(response) {
     return response.text().then(text => {
         console.log("data:"+text.replace(/'/g, '"'))
-        //replace single quote to double quote JSON response
-        const data = text.replace(/'/g, '"') 
+        //replace single quote into double quote  
+        const data = text && JSON.parse(text.replace(/'/g, '"'))
         if (!response.ok) {
             if (response.status === 401) {
                 logout();
                 //location.reload(true);
             }
-            const error = data  || response.statusText;
+            const error = (data && data.operationError.message) || response.statusText;
             return Promise.reject(error);
         }
 

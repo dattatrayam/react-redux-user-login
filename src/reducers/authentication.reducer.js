@@ -19,7 +19,7 @@ export function authentication(state = initialState, action) {
     return {
       loggingIn: false,
       loggedIn: false,
-      operationError: JSON.parse(action.error).operationError
+      error: action.error
     };
     case userActionConstants.LOGOUT:
       return {};
