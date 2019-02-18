@@ -2,8 +2,8 @@
 import { authHeader } from '../helpers';
 // todo: add URL into config file
 //const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-const apiUrl =  'http://3.122.7.162:5000';
-//const apiUrl ='';
+//const apiUrl =  'http://3.122.7.162:5000';
+const apiUrl ='';
 const proxyUrl = '';
 export const userService = {
     login,
