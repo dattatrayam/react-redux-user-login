@@ -12,6 +12,6 @@ This project is available on GitHub https://github.com/dattatrayam/react-redux-u
 
 
 ## UI Components
-1. LoginPage - User enter correct username and password to access other resources of application
+1. LoginPage - User have to enter username and password to access other resources of application
 2. SearchPage - It is private page, user can access this page only after successful login.
  
