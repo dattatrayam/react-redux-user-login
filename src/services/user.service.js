@@ -1,9 +1,10 @@
 //import config from 'config';
 import { authHeader } from '../helpers';
 // todo: add URL into config file
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-const apiUrl =  'http://3.122.7.162:5000';
-
+//const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+//const apiUrl =  'http://3.122.7.162:5000';
+const apiUrl ='';
+const proxyUrl = '';
 export const userService = {
     login,
     logout,
@@ -45,7 +46,7 @@ function search(searchText) {
 
 function handleResponse(response) {
     return response.text().then(text => {
-        console.log("data:"+text.replace(/'/g, '"'))
+        //console.log("data:"+text.replace(/'/g, '"'))
         //replace single quote into double quote  
         const data = text && JSON.parse(text.replace(/'/g, '"'))
         if (!response.ok) {
